@@ -18,6 +18,6 @@ onMounted(() => {
         clear();
 
     });
-    // stop();
+    stop();
 });
 </script>
