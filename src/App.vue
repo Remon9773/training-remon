@@ -11,34 +11,47 @@ if (import.meta.hot?.on('vite:beforeUpdate', () => {
 
 
 onMounted(() => {
-    const sketch = Sketch('sketch1', {w: 400, h: 400, bg: 'lightgray', center: true})
+    const sketch = Sketch('sketch1', {w: 400, h: 400, bg: 'black', center: true})
     const {stop, width, height, Vector, Vec} = sketch;
-    let x = 50*3;
-    let y = height/2;
-    let x2 = width/2;
-    let y2 = -20;
-    let velX = 1;
-    let velY = 1;
-    let velY2 = 0;
-    let rood1 = 255;
-    let groen1 = 0;
-    let blauw1 = 0;
+    // rect 1
+    let x1 = 0;
+    let y1 = 0;
+    // rect 2
+    let x2 = width-30;
+    let y2 = 0;
+    // rect 3
+    let x3 = 0;
+    let y3 = height-30;
+    // rect 4
+    let x4 = width-30;
+    let y4 = height-30;
     sketch.draw(({time, clear, fill, circle, rect, line, stroke, strokeWeight, text, textWeight, textMode}) => {
         clear();
-
-        if (y > height){
-            velY = 0;
-            velY2 = 1;
-        }
-
-
-        y += velY;
-        y2 += velY2;
-        fill(rood1, groen1, blauw1);
-        rect(x, y, 100, 30);
-
+        // rect 1
+        x1++;
+        y1++;
+        fill(255, 0, 0);
+        if (x1 < width/2 - 15) rect(x1, y1, 30, 30);
+        else circle(x1 + 15, y1 + 15, 15);
+        
+        // rect 2
+        x2--;
+        y2++;
         fill(0, 255, 0);
-        circle(x2, y2, 20);
+        if (x2 > width/2 - 15) rect(x2, y2, 30, 30);
+        else circle(x2 + 15, y2 + 15, 15);
+        
+        
+        // rect 3
+        x3++;
+        y3--;
+        fill(0, 0, 255);
+        rect(x3, y3, 30, 30);
+        // rect 4
+        x4--;
+        y4--;
+        fill(255, 255, 0);
+        rect(x4, y4, 30, 30);
 
     });
     // stop();
